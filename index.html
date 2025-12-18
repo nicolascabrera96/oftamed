@@ -1,1 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>En Construcción - Oftamed</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
 
+        .container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .eye-loader {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .pupil {
+            width: 30px;
+            height: 30px;
+            background: #000;
+            border-radius: 50%;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Eyelids */
+        .eyelid-top, .eyelid-bottom {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: #121212;
+            z-index: 2;
+            transition: all 0.1s;
+        }
+
+        .eyelid-top {
+            top: 0;
+            transform-origin: top;
+            animation: blink-top 2s infinite ease-in-out;
+        }
+
+        .eyelid-bottom {
+            bottom: 0;
+            transform-origin: bottom;
+            animation: blink-bottom 2s infinite ease-in-out;
+        }
+
+        @keyframes blink-top {
+            0%, 10%, 90%, 100% { transform: scaleY(0); } /* Open */
+            45%, 55% { transform: scaleY(1); } /* Closed */
+        }
+
+        @keyframes blink-bottom {
+            0%, 10%, 90%, 100% { transform: scaleY(0); } /* Open */
+            45%, 55% { transform: scaleY(1); } /* Closed */
+        }
+
+        h1 {
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            margin: 0;
+            opacity: 0.9;
+        }
+        
+        .subtext {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: -1.5rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="eye-loader">
+            <div class="eyelid-top"></div>
+            <div class="pupil"></div>
+            <div class="eyelid-bottom"></div>
+        </div>
+        <h1>Sitio Web en Construcción</h1>
+        <p class="subtext">Estamos trabajando para ti</p>
+    </div>
+
+</body>
+</html>
