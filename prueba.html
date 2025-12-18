@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oftamed - Plataforma Oftalmológica</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #00ebc7;
+            --primary-dark: #00ac92;
+            --secondary-color: #0b1120;
+            --text-color: #e2e8f0;
+            --text-muted: #94a3b8;
+            --background: #0f172a;
+            --accent: #38bdf8;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at top right, #1e293b 0%, #0f172a 100%);
+        }
+
+        /* Abstract background shapes */
+        .hero-bg-accent {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            top: -100px;
+            right: -100px;
+            border-radius: 50%;
+            z-index: 0;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        .hero-bg-accent-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 235, 199, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+            bottom: -50px;
+            left: -100px;
+            border-radius: 50%;
+            z-index: 0;
+            animation: float 15s infinite ease-in-out reverse;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(20px, -20px);
+            }
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1.2fr 0.8fr;
+                text-align: left;
+                align-items: center;
+            }
+        }
+
+        .hero-content {
+            padding: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        p.subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 1024px) {
+            p.subtitle {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: #000;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 235, 199, 0.3);
+            font-size: 1.1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 235, 199, 0.4);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .placeholder-visual {
+            width: 100%;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            position: relative;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            overflow: hidden;
+        }
+
+        .grid-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero-section">
+        <div class="hero-bg-accent"></div>
+        <div class="hero-bg-accent-2"></div>
+
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>La Plataforma de Tecnología Oftalmológica que unifica sus datos.</h1>
+                <p class="subtitle">
+                    Conecte sus equipos diagnósticos al historial del paciente y centralice todo su ecosistema de
+                    cirugía, presupuestos y administración en una plataforma que automatiza los flujos operativos
+                    mientras la IA agiliza el llenado de campos mediante transcripción de voz, garantizando un viaje del
+                    paciente fluido y sin interrupciones.
+                </p>
+                <a href="#" class="cta-button">Agendar Demostración</a>
+            </div>
+
+            <div class="hero-visual">
+                <!-- Visual placeholder for dashboard or tech graphic -->
+                <div class="placeholder-visual">
+                    <div class="grid-lines"></div>
+                    <span>[ Dashboard / Eye Tech Visual ]</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
