@@ -253,13 +253,44 @@
             }
         }
 
+
+        .seals-section {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .seals-container {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0.7;
+            /* 70% opacity for the container or images as requested? "las imagenes tengan opacidad del 70%" implies images. */
+        }
+
+        .seal-img {
+            height: 50px;
+            /* Uniform size */
+            width: auto;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            filter: none;
+        }
+
+        .seal-img:hover {
+            opacity: 1;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .hero-card {
                 grid-template-columns: 1fr;
                 padding: 40px;
                 background-size: cover;
-                /* Ensure BG still looks good */
             }
 
             .hero-right {
@@ -327,6 +358,15 @@
             </div>
 
         </section>
+    </div>
+
+    <div class="seals-section">
+        <div class="seals-container">
+            <img src="./assets/seal-iso.png" alt="ISO Certification" class="seal-img">
+            <img src="./assets/seal-iram.png" alt="IRAM Certification" class="seal-img">
+            <img src="./assets/seal-hl7.png" alt="HL7 Certification" class="seal-img">
+            <img src="./assets/seal-hipaa.png" alt="HIPAA Compliance" class="seal-img">
+        </div>
     </div>
 
 </body>
