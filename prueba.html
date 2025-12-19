@@ -1394,6 +1394,212 @@
             </div>
         </section>
 
+        <!-- FAQ Section -->
+        <style>
+            .faq-section {
+                padding: 80px 20px;
+                background-color: #ffffff;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+
+            .faq-header {
+                text-align: center;
+                margin-bottom: 60px;
+            }
+
+            .faq-header h2 {
+                font-size: 2.5rem;
+                color: #003366;
+                font-weight: 800;
+                margin-bottom: 20px;
+            }
+
+            .faq-item {
+                border-bottom: 1px solid #e2e8f0;
+            }
+
+            .faq-question {
+                padding: 25px 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                cursor: pointer;
+                transition: color 0.3s ease;
+            }
+
+            .faq-question h3 {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #333;
+                margin: 0;
+                transition: color 0.3s;
+            }
+
+            .faq-question:hover h3,
+            .faq-item.active .faq-question h3 {
+                color: #0046ad;
+            }
+
+            .faq-icon {
+                font-size: 1.5rem;
+                color: #0046ad;
+                font-weight: 300;
+                transition: transform 0.3s ease;
+            }
+
+            .faq-item.active .faq-icon {
+                transform: rotate(45deg);
+                /* Simple + to x rotation, or just switch content */
+            }
+
+            .faq-answer {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease, padding 0.3s ease;
+                color: #555;
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
+            .faq-item.active .faq-answer {
+                padding-bottom: 25px;
+            }
+        </style>
+
+        <section class="faq-section">
+            <div class="faq-header">
+                <h2>PREGUNTAS FRECUENTES</h2>
+            </div>
+
+            <div class="faq-container">
+                <!-- Item 1 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Es compatible con mis equipos oftalmológicos actuales?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí. Oftamed cuenta con integraciones flexibles que permiten la interoperabilidad con sus
+                            sistemas y equipos de diagnóstico actuales (vía protocolos estándar como HL7/DICOM),
+                            centralizando las imágenes y métricas directamente en la ficha del paciente.</p>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Qué pasa con mis fichas antiguas si me cambio a Oftamed?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No pierde nada. Contamos con un sistema especializado de migración de datos históricos.
+                            Nuestro equipo se encarga de importar sus pacientes, fichas y antecedentes desde su software
+                            anterior para que usted continúe operando con toda su historia clínica intacta.</p>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Cómo garantizan la seguridad de la información de mis pacientes?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La seguridad es intransable. Implementamos protocolos avanzados de encriptación y contamos
+                            con certificaciones internacionales ISO 27001 e ISO 9001 para proteger la confidencialidad e
+                            integridad de sus datos clínicos en todo momento.</p>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿El módulo quirúrgico permite generar presupuestos?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutamente. El módulo de Pabellón gestiona el flujo completo: desde la generación del
+                            presupuesto y la orden médica, hasta la tabla quirúrgica, el chequeo pre-operatorio, el
+                            protocolo de enfermería y la trazabilidad de insumos utilizados en la cirugía.</p>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿La agenda envía recordatorios automáticos?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí. Para reducir el ausentismo, el sistema envía recordatorios automáticos vía correo
+                            electrónico y confirmaciones instantáneas a través de WhatsApp, actualizando el estado de la
+                            cita en tiempo real en la agenda del médico.</p>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿La ficha clínica se adapta a la especialidad?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí. No usamos fichas genéricas. Oftamed incluye plantillas estándar por especialidad, lo que
+                            le permite registrar campos específicos de oftalmología (agudeza visual, refracción, etc.)
+                            de manera estructurada, replicando o mejorando sus formatos actuales.</p>
+                    </div>
+                </div>
+
+                <!-- Item 7 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Qué tipo de soporte técnico ofrecen?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ofrecemos soporte técnico local y dedicado. No hablará con bots; disponemos de un equipo de
+                            especialistas permanentemente disponible para asistirle en la operación diaria y resolver
+                            cualquier duda de su equipo clínico o administrativo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                const icon = item.querySelector('.faq-icon');
+
+                question.addEventListener('click', () => {
+                    // Close others
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                            otherItem.querySelector('.faq-answer').style.maxHeight = null;
+                            otherItem.querySelector('.faq-icon').textContent = '+';
+                            otherItem.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+                        }
+                    });
+
+                    // Toggle current
+                    item.classList.toggle('active');
+                    if (item.classList.contains('active')) {
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                        icon.textContent = '-'; // Or keep + and rotate
+                        icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        answer.style.maxHeight = null;
+                        icon.textContent = '+';
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
+        </script>
+
         <!-- Contact Section -->
         <style>
             .contact-section {
