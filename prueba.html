@@ -9,6 +9,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
         :root {
+            --primary-blue: #5468ff;
             --bg-body: #ffffff;
             --text-white: #ffffff;
         }
@@ -22,7 +23,7 @@
             flex-direction: column;
             align-items: center;
         }
-        
+
         /* Header */
         header {
             width: 100%;
@@ -34,7 +35,8 @@
         }
 
         .logo {
-            height: 40px; 
+            height: 50px;
+            /* Increased size for visibility */
             width: auto;
         }
 
@@ -51,11 +53,13 @@
         .hero-card {
             width: 100%;
             max-width: 1300px;
+            /* Background Image Logic */
+            background-color: #5b46e8;
             background-image: url('./assets/hero-bg.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            
+
             border-radius: 40px;
             padding: 60px;
             box-sizing: border-box;
@@ -63,9 +67,8 @@
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             position: relative;
-            overflow: hidden;
+            /* overflow: hidden; Removed to let floating elements overlap if needed, keeping visual style */
             min-height: 600px;
-            box-shadow: 0 20px 60px rgba(84, 104, 255, 0.2);
         }
 
         /* Left Column */
@@ -91,8 +94,13 @@
             color: white;
         }
 
-        .pill.green { background-color: #2ecc71; }
-        .pill.blue { background-color: #5d87cb; }
+        .pill.green {
+            background-color: #2ecc71;
+        }
+
+        .pill.blue {
+            background-color: #5d87cb;
+        }
 
         h1 {
             color: white;
@@ -103,7 +111,7 @@
         }
 
         .description {
-            color: rgba(255,255,255,0.9);
+            color: rgba(255, 255, 255, 0.9);
             font-size: 1.1rem;
             line-height: 1.6;
             margin-bottom: 40px;
@@ -120,7 +128,7 @@
             font-size: 1.1rem;
             transition: transform 0.2s;
             display: inline-block;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .cta-btn:hover {
@@ -137,53 +145,70 @@
         }
 
         .laptop-img {
-            width: 110%; 
-            max-width: 800px; 
+            width: 100%;
             height: auto;
             position: relative;
             z-index: 10;
         }
 
         /* Floating Cards */
-        .floating-element {
+        .floating-card {
             position: absolute;
             z-index: 20;
-            width: auto;
-            display: block;
+            /* Fallback shadow if PNG doesn't have it */
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+            animation: float 6s ease-in-out infinite;
         }
 
-        .floating-element img {
+        .floating-card img {
+            display: block;
             width: 100%;
             height: auto;
-            display: block;
         }
 
-        /* Positions */
-        .f-icon {
-            top: 25%;
-            left: -5%;
-            width: 80px;
-            animation: float 4s ease-in-out infinite;
+        /* Positions matching "ejemplo hero" reference logic + User request */
+
+        /* The new history card */
+        .card-history {
+            top: 15%;
+            left: -15%;
+            width: 250px;
+            animation-delay: 0s;
         }
 
-        .f-label {
-            top: 25%;
-            left: 8%; 
-            width: 180px;
-            animation: float 4s ease-in-out infinite;
-            animation-delay: 0.1s; 
-            border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .f-rx {
-            bottom: 15%;
+        /* The logo icon floating "junto al computador" */
+        .logo-icon-card {
+            top: 20%;
             right: -5%;
-            width: 260px;
-            animation: float 6s ease-in-out infinite 1s;
-            border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            width: 80px;
+            background: white;
+            border-radius: 20px;
+            padding: 10px;
+            /* Check if logo-icon has background. Assuming transparent, adding white box.*/
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation-delay: 1.5s;
         }
+
+        .logo-icon-card img {
+            width: 100%;
+        }
+
+        /* Re-using other cards if they fit the layout, or just the requested ones. 
+           User said "agrega esta etiqueta junto al icono...". 
+           I'll keep the Rx/Exam cards if they add value, but prioritize the new ones.
+           Assuming the new User Cards replace the old generic ones where suitable.
+           I will keep 'card-rx' at bottom for balance.
+        */
+
+        .card-rx {
+            bottom: 5%;
+            right: 0%;
+            width: 280px;
+            animation-delay: 0.5s;
+        }
+
 
         /* Connectors SVG */
         .connectors {
@@ -201,34 +226,49 @@
             stroke: rgba(255, 255, 255, 0.4);
             stroke-width: 2;
             stroke-dasharray: 10;
+            /* Animate the dash */
             animation: dash 30s linear infinite;
         }
-        
+
         .connector-dot {
             fill: white;
             r: 4;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
         }
 
         @keyframes dash {
-            to { stroke-dashoffset: -1000; }
+            to {
+                stroke-dashoffset: -1000;
+            }
         }
 
+        /* Responsive */
         @media (max-width: 1024px) {
             .hero-card {
                 grid-template-columns: 1fr;
                 padding: 40px;
-                background-position: left;
+                background-size: cover;
+                /* Ensure BG still looks good */
             }
+
             .hero-right {
                 margin-top: 50px;
             }
-            .f-icon { left: 0; top: 0; }
-            .f-label { left: 60px; top: 10px; }
+
+            .card-history {
+                left: 0;
+            }
         }
     </style>
 </head>
@@ -236,12 +276,12 @@
 <body>
 
     <header>
-        <img src="./assets/logo.png" alt="Oftamed" class="logo">
+        <img src="./assets/logo-full.png" alt="Oftamed" class="logo">
     </header>
 
     <div class="hero-wrapper">
         <section class="hero-card">
-            
+
             <div class="hero-left">
                 <div class="pill-container">
                     <span class="pill green">Software clínico</span>
@@ -249,38 +289,46 @@
                 </div>
                 <h1>La Plataforma de Tecnología Oftalmológica que unifica sus datos.</h1>
                 <p class="description">
-                    Conecte sus equipos diagnósticos al historial del paciente y centralice todo su ecosistema de cirugía, presupuestos y administración en una plataforma que automatiza los flujos operativos.
+                    Conecte sus equipos diagnósticos al historial del paciente y centralice todo su ecosistema de
+                    cirugía, presupuestos y administración en una plataforma que automatiza los flujos operativos.
                 </p>
                 <a href="#" class="cta-btn">Agendar una demostración</a>
             </div>
 
             <div class="hero-right">
+
                 <svg class="connectors" viewBox="0 0 600 500" preserveAspectRatio="none">
-                    <path class="connector-path" d="M 120 120 C 180 120, 200 200, 300 250" />
-                    <circle cx="120" cy="120" class="connector-dot" />
-                    <circle cx="300" cy="250" class="connector-dot" />
-                    <path class="connector-path" d="M 500 400 C 450 400, 400 350, 350 300" />
-                    <circle cx="500" cy="400" class="connector-dot" />
+                    <!-- Path from History (Left) to Laptop -->
+                    <path class="connector-path" d="M 50 150 C 150 150, 150 250, 300 250" />
+                    <circle cx="50" cy="150" class="connector-dot" />
+
+                    <!-- Path from Icon (Right Top) to Laptop -->
+                    <path class="connector-path" d="M 550 120 C 450 120, 450 250, 300 250" />
+                    <circle cx="550" cy="120" class="connector-dot" />
+
+                    <!-- Path from Rx (Right Bottom) to Laptop -->
+                    <path class="connector-path" d="M 500 450 C 400 450, 400 350, 350 300" />
+                    <circle cx="500" cy="450" class="connector-dot" />
                 </svg>
 
-                <img src="./assets/laptop.png" alt="Plataforma Oftamed" class="laptop-img">
-                
-                <div class="floating-element f-icon">
-                    <img src="./assets/floating-icon.png" alt="Icono Oftamed">
-                </div>
-                
-                <div class="floating-element f-label">
-                    <img src="./assets/floating-label.png" alt="Etiqueta Historia Clinica">
+                <img src="./assets/laptop-screen.png" alt="Dashboard Oftamed" class="laptop-img">
+
+                <div class="floating-card card-history">
+                    <img src="./assets/card-history.png" alt="Historia Clínica">
                 </div>
 
-                <div class="floating-element f-rx">
+                <div class="floating-card logo-icon-card">
+                    <img src="./assets/logo-icon.png" alt="Icono Oftamed">
+                </div>
+
+                <div class="floating-card card-rx">
                     <img src="./assets/card-rx.png" alt="Recetas Médicas">
                 </div>
-
             </div>
 
         </section>
     </div>
 
 </body>
+
 </html>
