@@ -423,19 +423,19 @@
 
         .bento-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
             justify-content: center;
+            align-items: start;
         }
 
         .bento-item {
             position: relative;
             border-radius: 20px;
             overflow: hidden;
-            /* Box shadow to match premium aesthetic if images are flat, 
-               but provided images look like pre-designed cards. 
-               Adding hover scale and float. */
-            transition: transform 0.4s ease;
+            background: white;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
             animation: float-bento 6s ease-in-out infinite;
         }
 
