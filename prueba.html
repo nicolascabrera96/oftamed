@@ -540,16 +540,15 @@
         <style>
             .patient-journey-section {
                 width: 100%;
-                padding: 80px 20px;
+                padding: 80px 20px 100px 20px;
+                /* Added bottom padding/margin for progress bar visibility */
                 box-sizing: border-box;
                 background: url('./assets/timeline-bg.png') no-repeat center center;
                 background-size: cover;
                 color: white;
-                /* Assuming dark BG based on blue image */
                 overflow: hidden;
                 position: relative;
                 border-radius: 20px;
-                /* Matching rounded aesthetics */
                 margin: 40px auto;
                 max-width: 1400px;
             }
@@ -567,26 +566,29 @@
                 text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             }
 
+            .journey-container-wrapper {
+                position: relative;
+                padding: 0 60px;
+                /* Space for buttons */
+            }
+
             .journey-scroll-container {
                 display: flex;
                 overflow-x: auto;
                 gap: 40px;
                 padding-bottom: 40px;
-                /* Space for scrollbar or shadow */
                 scroll-snap-type: x mandatory;
                 -webkit-overflow-scrolling: touch;
                 scrollbar-width: none;
-                /* Hide scrollbar Firefox */
+                scroll-behavior: smooth;
             }
 
             .journey-scroll-container::-webkit-scrollbar {
                 display: none;
-                /* Hide scrollbar Chrome/Safari */
             }
 
             .journey-slide {
                 min-width: 80%;
-                /* Show part of next slide */
                 max-width: 900px;
                 background: rgba(255, 255, 255, 0.1);
                 backdrop-filter: blur(10px);
@@ -600,7 +602,6 @@
                 gap: 40px;
                 transition: transform 0.3s ease;
                 flex-shrink: 0;
-                /* Prevent shrinking */
             }
 
             .journey-slide:hover {
@@ -652,14 +653,105 @@
                 }
             }
 
+            /* Navigation Buttons */
+            .journey-nav-btn {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.2);
+                backdrop-filter: blur(5px);
+                border: 1px solid rgba(255, 255, 255, 0.4);
+                color: white;
+                font-size: 1.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                z-index: 10;
+                transition: all 0.3s ease;
+                user-select: none;
+            }
+
+            .journey-nav-btn:hover {
+                background: white;
+                color: #0046ad;
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            }
+
+            .journey-nav-btn.prev {
+                left: 0;
+            }
+
+            .journey-nav-btn.next {
+                right: 0;
+            }
+
+            /* Progress Line */
+            .journey-progress-track {
+                position: absolute;
+                bottom: 40px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80%;
+                height: 4px;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 2px;
+                overflow: visible;
+            }
+
+            .journey-progress-bar {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 0%;
+                background: #00ff88;
+                border-radius: 2px;
+                box-shadow: 0 0 10px #00ff88;
+                transition: width 0.1s linear;
+            }
+
+            /* The Sphere */
+            .journey-progress-bar::after {
+                content: '';
+                position: absolute;
+                right: -6px;
+                top: 50%;
+                transform: translateY(-50%) scale(0.8);
+                width: 12px;
+                height: 12px;
+                background: white;
+                border-radius: 50%;
+                box-shadow: 0 0 15px #00ff88;
+                transition: transform 0.3s ease;
+            }
+
+            /* Sphere transformation at the end */
+            .journey-progress-bar.complete::after {
+                transform: translateY(-50%) scale(1.5);
+                background: #00ff88;
+                box-shadow: 0 0 25px #00ff88, 0 0 50px white;
+            }
+
             @media (max-width: 900px) {
                 .journey-slide {
-                    flex-direction: column;
+                    flexDirection: column;
                     min-width: 90%;
                 }
 
                 .slide-visual img {
-                    max-width: 100%;
+                    maxWidth: 100%;
+                }
+
+                .journey-container-wrapper {
+                    padding: 0;
+                }
+
+                .journey-nav-btn {
+                    display: none;
                 }
             }
         </style>
@@ -669,125 +761,170 @@
                 <h2>Viaje del Paciente</h2>
             </div>
 
-            <div class="journey-scroll-container">
-                <!-- Slide 1 -->
-                <div class="journey-slide">
-                    <div class="slide-content">
-                        <h3>Agenda y Recepción</h3>
-                        <p>Coordinación visual inmediata. Gestione su agenda web y presencial en un solo lugar con
-                            confirmaciones automáticas por WhatsApp. Al llegar el paciente, la recepcionista cambia su
-                            estado a "En Sala de Espera" y el sistema avisa automáticamente en la pantalla del médico.
-                        </p>
+            <div class="journey-container-wrapper">
+                <button class="journey-nav-btn prev" onclick="scrollJourney(-1)">&#10094;</button>
+                <button class="journey-nav-btn next" onclick="scrollJourney(1)">&#10095;</button>
+
+                <div class="journey-scroll-container" id="journeyContainer">
+                    <!-- Slide 1 -->
+                    <div class="journey-slide">
+                        <div class="slide-content">
+                            <h3>Agenda y Recepción</h3>
+                            <p>Coordinación visual inmediata. Gestione su agenda web y presencial en un solo lugar con
+                                confirmaciones automáticas por WhatsApp. Al llegar el paciente, la recepcionista cambia
+                                su estado a "En Sala de Espera" y el sistema avisa automáticamente en la pantalla del
+                                médico.</p>
+                        </div>
+                        <div class="slide-visual">
+                            <img src="./assets/slide-agenda.png" alt="Agenda y Recepción">
+                        </div>
                     </div>
-                    <div class="slide-visual">
-                        <img src="./assets/slide-agenda.png" alt="Agenda y Recepción">
+
+                    <!-- Slide 2 -->
+                    <div class="journey-slide">
+                        <div class="slide-content">
+                            <h3>Transcripción por Voz (IA)</h3>
+                            <p>Atención centrada en el paciente. Durante la evaluación, dedíquese a escuchar y examinar,
+                                no a teclear. Nuestra IA de voz transcribe la anamnesis y completa los campos de la
+                                atención médica automáticamente mientras usted habla con el paciente.</p>
+                        </div>
+                        <div class="slide-visual">
+                            <img src="./assets/slide-clinical.png" alt="Transcripción por Voz">
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="journey-slide">
+                        <div class="slide-content">
+                            <h3>Ficha Clínica Oftalmológica</h3>
+                            <p>Datos estructurados, no texto libre. Utilice una ficha diseñada para su especialidad.
+                                Registre la agudeza visual, refracción, tonometría y biomicroscopía en grillas
+                                inteligentes que agilizan la consulta y permiten generar estadísticas reales después.
+                            </p>
+                        </div>
+                        <div class="slide-visual">
+                            <img src="./assets/slide-clinical.png" alt="Ficha Clínica Oftalmológica">
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="journey-slide">
+                        <div class="slide-content">
+                            <h3>Exámenes Conectados</h3>
+                            <p>Interoperabilidad real. Evite errores de digitación. Sus equipos (OCT, Biómetros,
+                                Topógrafos) envían las imágenes y métricas directamente a la carpeta del paciente en
+                                Spectra apenas termina el examen.</p>
+                        </div>
+                        <div class="slide-visual">
+                            <img src="./assets/slide-agenda.png" alt="Exámenes Conectados">
+                        </div>
+                    </div>
+
+                    <!-- Slide 5 -->
+                    <div class="journey-slide">
+                        <div class="slide-content">
+                            <h3>Gestión Quirúrgica</h3>
+                            <p>Control total de pabellón. Si el caso es quirúrgico, genere el presupuesto y planifique
+                                los insumos en el mismo flujo. Gestione la tabla operatoria, el protocolo de enfermería
+                                y los tiempos de pabellón sin cambiar de software.</p>
+                        </div>
+                        <div class="slide-visual">
+                            <img src="./assets/slide-clinical.png" alt="Gestión Quirúrgica">
+                        </div>
+                    </div>
+
+                    <!-- Slide 6 -->
+                    <div class="journey-slide">
+                        <div class="slide-content">
+                            <h3>Inventario Médico</h3>
+                            <p>Descuento de stock automático. Mantenga su bodega cuadrada. Cada vez que utiliza un Lente
+                                Intraocular (LIO) o un insumo en cirugía, el sistema lo descuenta del inventario en
+                                tiempo real, alertándole cuando es hora de reponer.</p>
+                        </div>
+                        <div class="slide-visual">
+                            <img src="./assets/slide-agenda.png" alt="Inventario Médico">
+                        </div>
+                    </div>
+
+                    <!-- Slide 7 -->
+                    <div class="journey-slide">
+                        <div class="slide-content">
+                            <h3>Finanzas y Cuenta Médica</h3>
+                            <p>Cobro exacto y sin fugas. Automatice la cuenta médica. Cada prestación clínica, examen o
+                                derecho de pabellón registrado se suma a la cuenta final al instante, calculando copagos
+                                y honorarios médicos sin planillas manuales.</p>
+                        </div>
+                        <div class="slide-visual">
+                            <img src="./assets/slide-clinical.png" alt="Finanzas y Cuenta Médica">
+                        </div>
+                    </div>
+
+                    <!-- Slide 8 -->
+                    <div class="journey-slide">
+                        <div class="slide-content">
+                            <h3>Reportería Avanzada</h3>
+                            <p>Gestión basada en datos. No opere a ciegas. Visualice en paneles simples cuántos
+                                pacientes atendió, cuál es la rentabilidad por cirugía y dónde están los tiempos de
+                                espera más largos de su clínica.</p>
+                        </div>
+                        <div class="slide-visual">
+                            <img src="./assets/slide-agenda.png" alt="Reportería Avanzada">
+                        </div>
+                    </div>
+
+                    <!-- Slide 9 -->
+                    <div class="journey-slide">
+                        <div class="slide-content">
+                            <h3>CRM y Fidelización</h3>
+                            <p>El ciclo no termina en el alta. Haga volver a sus pacientes. Filtre su base de datos por
+                                patología o fecha de última visita y envíe campañas de recordatorio para controles
+                                anuales, llenando su agenda futura.</p>
+                        </div>
+                        <div class="slide-visual">
+                            <img src="./assets/slide-clinical.png" alt="CRM y Fidelización">
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Slide 2 -->
-                <div class="journey-slide">
-                    <div class="slide-content">
-                        <h3>Transcripción por Voz (IA)</h3>
-                        <p>Atención centrada en el paciente. Durante la evaluación, dedíquese a escuchar y examinar, no
-                            a teclear. Nuestra IA de voz transcribe la anamnesis y completa los campos de la atención
-                            médica automáticamente mientras usted habla con el paciente.</p>
-                    </div>
-                    <div class="slide-visual">
-                        <img src="./assets/slide-clinical.png" alt="Transcripción por Voz">
-                        <!-- Placeholder: Used consistent visual -->
-                    </div>
-                </div>
-
-                <!-- Slide 3 -->
-                <div class="journey-slide">
-                    <div class="slide-content">
-                        <h3>Ficha Clínica Oftalmológica</h3>
-                        <p>Datos estructurados, no texto libre. Utilice una ficha diseñada para su especialidad.
-                            Registre la agudeza visual, refracción, tonometría y biomicroscopía en grillas inteligentes
-                            que agilizan la consulta y permiten generar estadísticas reales después.</p>
-                    </div>
-                    <div class="slide-visual">
-                        <img src="./assets/slide-clinical.png" alt="Ficha Clínica Oftalmológica">
-                    </div>
-                </div>
-
-                <!-- Slide 4 -->
-                <div class="journey-slide">
-                    <div class="slide-content">
-                        <h3>Exámenes Conectados</h3>
-                        <p>Interoperabilidad real. Evite errores de digitación. Sus equipos (OCT, Biómetros, Topógrafos)
-                            envían las imágenes y métricas directamente a la carpeta del paciente en Spectra apenas
-                            termina el examen.</p>
-                    </div>
-                    <div class="slide-visual">
-                        <img src="./assets/slide-agenda.png" alt="Exámenes Conectados"> <!-- Placeholder -->
-                    </div>
-                </div>
-
-                <!-- Slide 5 -->
-                <div class="journey-slide">
-                    <div class="slide-content">
-                        <h3>Gestión Quirúrgica</h3>
-                        <p>Control total de pabellón. Si el caso es quirúrgico, genere el presupuesto y planifique los
-                            insumos en el mismo flujo. Gestione la tabla operatoria, el protocolo de enfermería y los
-                            tiempos de pabellón sin cambiar de software.</p>
-                    </div>
-                    <div class="slide-visual">
-                        <img src="./assets/slide-clinical.png" alt="Gestión Quirúrgica"> <!-- Placeholder -->
-                    </div>
-                </div>
-
-                <!-- Slide 6 -->
-                <div class="journey-slide">
-                    <div class="slide-content">
-                        <h3>Inventario Médico</h3>
-                        <p>Descuento de stock automático. Mantenga su bodega cuadrada. Cada vez que utiliza un Lente
-                            Intraocular (LIO) o un insumo en cirugía, el sistema lo descuenta del inventario en tiempo
-                            real, alertándole cuando es hora de reponer.</p>
-                    </div>
-                    <div class="slide-visual">
-                        <img src="./assets/slide-agenda.png" alt="Inventario Médico"> <!-- Placeholder -->
-                    </div>
-                </div>
-
-                <!-- Slide 7 -->
-                <div class="journey-slide">
-                    <div class="slide-content">
-                        <h3>Finanzas y Cuenta Médica</h3>
-                        <p>Cobro exacto y sin fugas. Automatice la cuenta médica. Cada prestación clínica, examen o
-                            derecho de pabellón registrado se suma a la cuenta final al instante, calculando copagos y
-                            honorarios médicos sin planillas manuales.</p>
-                    </div>
-                    <div class="slide-visual">
-                        <img src="./assets/slide-clinical.png" alt="Finanzas y Cuenta Médica"> <!-- Placeholder -->
-                    </div>
-                </div>
-
-                <!-- Slide 8 -->
-                <div class="journey-slide">
-                    <div class="slide-content">
-                        <h3>Reportería Avanzada</h3>
-                        <p>Gestión basada en datos. No opere a ciegas. Visualice en paneles simples cuántos pacientes
-                            atendió, cuál es la rentabilidad por cirugía y dónde están los tiempos de espera más largos
-                            de su clínica.</p>
-                    </div>
-                    <div class="slide-visual">
-                        <img src="./assets/slide-agenda.png" alt="Reportería Avanzada"> <!-- Placeholder -->
-                    </div>
-                </div>
-
-                <!-- Slide 9 -->
-                <div class="journey-slide">
-                    <div class="slide-content">
-                        <h3>CRM y Fidelización</h3>
-                        <p>El ciclo no termina en el alta. Haga volver a sus pacientes. Filtre su base de datos por
-                            patología o fecha de última visita y envíe campañas de recordatorio para controles anuales,
-                            llenando su agenda futura.</p>
-                    </div>
-                    <div class="slide-visual">
-                        <img src="./assets/slide-clinical.png" alt="CRM y Fidelización"> <!-- Placeholder -->
-                    </div>
-                </div>
-
+            <!-- Progress Line Container -->
+            <div class="journey-progress-track">
+                <div class="journey-progress-bar" id="journeyProgress"></div>
             </div>
         </div>
+
+        <script>
+            const container = document.getElementById('journeyContainer');
+            const progressBar = document.getElementById('journeyProgress');
+
+            function updateProgress() {
+                const scrollLeft = container.scrollLeft;
+                const scrollWidth = container.scrollWidth;
+                const clientWidth = container.clientWidth;
+
+                // Calculate percentage
+                const maxScroll = scrollWidth - clientWidth;
+                let percentage = (scrollLeft / maxScroll) * 100;
+
+                // Clamp 0-100
+                percentage = Math.max(0, Math.min(percentage, 100));
+
+                progressBar.style.width = percentage + '%';
+
+                // Sphere effect at end
+                if (percentage > 98) {
+                    progressBar.classList.add('complete');
+                } else {
+                    progressBar.classList.remove('complete');
+                }
+            }
+
+            function scrollJourney(direction) {
+                const slideWidth = container.querySelector('.journey-slide').offsetWidth + 40; // width + gap
+                container.scrollBy({ left: direction * slideWidth, behavior: 'smooth' });
+            }
+
+            container.addEventListener('scroll', updateProgress);
+            // Init
+            updateProgress();
+        </script>
