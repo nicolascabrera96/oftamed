@@ -1664,13 +1664,17 @@
                 background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
                 /* Deep Blue */
                 color: white;
-                padding: 60px 20px 30px;
+                padding: 60px 40px 30px;
+                /* Increased padding */
                 font-size: 0.9rem;
             }
 
             .footer-container {
-                max-width: 1200px;
-                margin: 0 auto;
+                width: 100%;
+                /* Full width */
+                max-width: none;
+                /* Remove constraint */
+                margin: 0;
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 40px;
@@ -1681,6 +1685,8 @@
                 display: flex;
                 flex-direction: column;
                 gap: 30px;
+                align-items: flex-start;
+                /* Ensure left alignment */
             }
 
             .footer-logos-top {
@@ -1695,12 +1701,25 @@
             }
 
             .footer-seals {
+                display: flex;
+                gap: 15px;
+                flex-wrap: wrap;
+                /* Allow wrapping if small screen */
                 margin-top: 10px;
+                align-items: center;
             }
 
             .footer-seals img {
-                height: 50px;
+                height: 40px;
+                /* Adjusted size for uniform look */
                 width: auto;
+                object-fit: contain;
+                opacity: 0.9;
+                transition: opacity 0.3s;
+            }
+
+            .footer-seals img:hover {
+                opacity: 1;
             }
 
             .footer-copyright {
@@ -1748,10 +1767,16 @@
 
                 .footer-right {
                     align-items: center;
+                    text-align: center;
                 }
 
-                .footer-logos-top {
+                .footer-logos-top,
+                .footer-seals {
                     justify-content: center;
+                }
+
+                .footer-left {
+                    align-items: center;
                 }
             }
         </style>
@@ -1764,7 +1789,10 @@
                     </div>
 
                     <div class="footer-seals">
-                        <img src="./assets/footer-seals.png" alt="Certificaciones: ISO 27001, HIPAA, HL7">
+                        <img src="./assets/seal-iram.png" alt="Certificación IRAM">
+                        <img src="./assets/seal-iso.png" alt="Certificación ISO 9001">
+                        <img src="./assets/seal-hl7.png" alt="HL7">
+                        <img src="./assets/seal-hipaa.png" alt="HIPAA">
                     </div>
 
                     <div class="footer-copyright">
