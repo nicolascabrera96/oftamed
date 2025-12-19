@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>En Construcción - Oftamed</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4TMRCEWVV0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-4TMRCEWVV0');
+    </script>
     <style>
         body {
             background-color: #121212;
@@ -48,7 +58,8 @@
         }
 
         /* Eyelids */
-        .eyelid-top, .eyelid-bottom {
+        .eyelid-top,
+        .eyelid-bottom {
             position: absolute;
             left: 0;
             width: 100%;
@@ -71,13 +82,39 @@
         }
 
         @keyframes blink-top {
-            0%, 10%, 90%, 100% { transform: scaleY(0); } /* Open */
-            45%, 55% { transform: scaleY(1); } /* Closed */
+
+            0%,
+            10%,
+            90%,
+            100% {
+                transform: scaleY(0);
+            }
+
+            /* Open */
+            45%,
+            55% {
+                transform: scaleY(1);
+            }
+
+            /* Closed */
         }
 
         @keyframes blink-bottom {
-            0%, 10%, 90%, 100% { transform: scaleY(0); } /* Open */
-            45%, 55% { transform: scaleY(1); } /* Closed */
+
+            0%,
+            10%,
+            90%,
+            100% {
+                transform: scaleY(0);
+            }
+
+            /* Open */
+            45%,
+            55% {
+                transform: scaleY(1);
+            }
+
+            /* Closed */
         }
 
         h1 {
@@ -88,15 +125,15 @@
             margin: 0;
             opacity: 0.9;
         }
-        
+
         .subtext {
             font-size: 0.9rem;
             color: #888;
             margin-top: -1.5rem;
         }
-
     </style>
 </head>
+
 <body>
 
     <div class="container">
@@ -110,4 +147,5 @@
     </div>
 
 </body>
+
 </html>
