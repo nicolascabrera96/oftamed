@@ -536,8 +536,258 @@
                 </div>
             </div>
         </div>
-    </div>
+        <!-- Patient Journey Section -->
+        <style>
+            .patient-journey-section {
+                width: 100%;
+                padding: 80px 20px;
+                box-sizing: border-box;
+                background: url('./assets/timeline-bg.png') no-repeat center center;
+                background-size: cover;
+                color: white;
+                /* Assuming dark BG based on blue image */
+                overflow: hidden;
+                position: relative;
+                border-radius: 20px;
+                /* Matching rounded aesthetics */
+                margin: 40px auto;
+                max-width: 1400px;
+            }
 
-</body>
+            .journey-header {
+                text-align: center;
+                margin-bottom: 50px;
+            }
 
-</html>
+            .journey-header h2 {
+                font-size: 3rem;
+                font-weight: 800;
+                margin: 0;
+                color: white;
+                text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .journey-scroll-container {
+                display: flex;
+                overflow-x: auto;
+                gap: 40px;
+                padding-bottom: 40px;
+                /* Space for scrollbar or shadow */
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                /* Hide scrollbar Firefox */
+            }
+
+            .journey-scroll-container::-webkit-scrollbar {
+                display: none;
+                /* Hide scrollbar Chrome/Safari */
+            }
+
+            .journey-slide {
+                min-width: 80%;
+                /* Show part of next slide */
+                max-width: 900px;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 30px;
+                padding: 40px;
+                box-sizing: border-box;
+                scroll-snap-align: center;
+                display: flex;
+                align-items: center;
+                gap: 40px;
+                transition: transform 0.3s ease;
+                flex-shrink: 0;
+                /* Prevent shrinking */
+            }
+
+            .journey-slide:hover {
+                transform: scale(1.01);
+                background: rgba(255, 255, 255, 0.15);
+            }
+
+            .slide-content {
+                flex: 1;
+            }
+
+            .slide-content h3 {
+                font-size: 2rem;
+                margin-bottom: 20px;
+                color: #fff;
+                font-weight: 700;
+            }
+
+            .slide-content p {
+                font-size: 1.1rem;
+                line-height: 1.6;
+                color: rgba(255, 255, 255, 0.9);
+            }
+
+            .slide-visual {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .slide-visual img {
+                width: 100%;
+                height: auto;
+                border-radius: 12px;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+                animation: pulse-visual 4s infinite ease-in-out;
+            }
+
+            @keyframes pulse-visual {
+
+                0%,
+                100% {
+                    transform: scale(1);
+                }
+
+                50% {
+                    transform: scale(1.02);
+                }
+            }
+
+            @media (max-width: 900px) {
+                .journey-slide {
+                    flex-direction: column;
+                    min-width: 90%;
+                }
+
+                .slide-visual img {
+                    max-width: 100%;
+                }
+            }
+        </style>
+
+        <div class="patient-journey-section">
+            <div class="journey-header">
+                <h2>Viaje del Paciente</h2>
+            </div>
+
+            <div class="journey-scroll-container">
+                <!-- Slide 1 -->
+                <div class="journey-slide">
+                    <div class="slide-content">
+                        <h3>Agenda y Recepción</h3>
+                        <p>Coordinación visual inmediata. Gestione su agenda web y presencial en un solo lugar con
+                            confirmaciones automáticas por WhatsApp. Al llegar el paciente, la recepcionista cambia su
+                            estado a "En Sala de Espera" y el sistema avisa automáticamente en la pantalla del médico.
+                        </p>
+                    </div>
+                    <div class="slide-visual">
+                        <img src="./assets/slide-agenda.png" alt="Agenda y Recepción">
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="journey-slide">
+                    <div class="slide-content">
+                        <h3>Transcripción por Voz (IA)</h3>
+                        <p>Atención centrada en el paciente. Durante la evaluación, dedíquese a escuchar y examinar, no
+                            a teclear. Nuestra IA de voz transcribe la anamnesis y completa los campos de la atención
+                            médica automáticamente mientras usted habla con el paciente.</p>
+                    </div>
+                    <div class="slide-visual">
+                        <img src="./assets/slide-clinical.png" alt="Transcripción por Voz">
+                        <!-- Placeholder: Used consistent visual -->
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="journey-slide">
+                    <div class="slide-content">
+                        <h3>Ficha Clínica Oftalmológica</h3>
+                        <p>Datos estructurados, no texto libre. Utilice una ficha diseñada para su especialidad.
+                            Registre la agudeza visual, refracción, tonometría y biomicroscopía en grillas inteligentes
+                            que agilizan la consulta y permiten generar estadísticas reales después.</p>
+                    </div>
+                    <div class="slide-visual">
+                        <img src="./assets/slide-clinical.png" alt="Ficha Clínica Oftalmológica">
+                    </div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="journey-slide">
+                    <div class="slide-content">
+                        <h3>Exámenes Conectados</h3>
+                        <p>Interoperabilidad real. Evite errores de digitación. Sus equipos (OCT, Biómetros, Topógrafos)
+                            envían las imágenes y métricas directamente a la carpeta del paciente en Spectra apenas
+                            termina el examen.</p>
+                    </div>
+                    <div class="slide-visual">
+                        <img src="./assets/slide-agenda.png" alt="Exámenes Conectados"> <!-- Placeholder -->
+                    </div>
+                </div>
+
+                <!-- Slide 5 -->
+                <div class="journey-slide">
+                    <div class="slide-content">
+                        <h3>Gestión Quirúrgica</h3>
+                        <p>Control total de pabellón. Si el caso es quirúrgico, genere el presupuesto y planifique los
+                            insumos en el mismo flujo. Gestione la tabla operatoria, el protocolo de enfermería y los
+                            tiempos de pabellón sin cambiar de software.</p>
+                    </div>
+                    <div class="slide-visual">
+                        <img src="./assets/slide-clinical.png" alt="Gestión Quirúrgica"> <!-- Placeholder -->
+                    </div>
+                </div>
+
+                <!-- Slide 6 -->
+                <div class="journey-slide">
+                    <div class="slide-content">
+                        <h3>Inventario Médico</h3>
+                        <p>Descuento de stock automático. Mantenga su bodega cuadrada. Cada vez que utiliza un Lente
+                            Intraocular (LIO) o un insumo en cirugía, el sistema lo descuenta del inventario en tiempo
+                            real, alertándole cuando es hora de reponer.</p>
+                    </div>
+                    <div class="slide-visual">
+                        <img src="./assets/slide-agenda.png" alt="Inventario Médico"> <!-- Placeholder -->
+                    </div>
+                </div>
+
+                <!-- Slide 7 -->
+                <div class="journey-slide">
+                    <div class="slide-content">
+                        <h3>Finanzas y Cuenta Médica</h3>
+                        <p>Cobro exacto y sin fugas. Automatice la cuenta médica. Cada prestación clínica, examen o
+                            derecho de pabellón registrado se suma a la cuenta final al instante, calculando copagos y
+                            honorarios médicos sin planillas manuales.</p>
+                    </div>
+                    <div class="slide-visual">
+                        <img src="./assets/slide-clinical.png" alt="Finanzas y Cuenta Médica"> <!-- Placeholder -->
+                    </div>
+                </div>
+
+                <!-- Slide 8 -->
+                <div class="journey-slide">
+                    <div class="slide-content">
+                        <h3>Reportería Avanzada</h3>
+                        <p>Gestión basada en datos. No opere a ciegas. Visualice en paneles simples cuántos pacientes
+                            atendió, cuál es la rentabilidad por cirugía y dónde están los tiempos de espera más largos
+                            de su clínica.</p>
+                    </div>
+                    <div class="slide-visual">
+                        <img src="./assets/slide-agenda.png" alt="Reportería Avanzada"> <!-- Placeholder -->
+                    </div>
+                </div>
+
+                <!-- Slide 9 -->
+                <div class="journey-slide">
+                    <div class="slide-content">
+                        <h3>CRM y Fidelización</h3>
+                        <p>El ciclo no termina en el alta. Haga volver a sus pacientes. Filtre su base de datos por
+                            patología o fecha de última visita y envíe campañas de recordatorio para controles anuales,
+                            llenando su agenda futura.</p>
+                    </div>
+                    <div class="slide-visual">
+                        <img src="./assets/slide-clinical.png" alt="CRM y Fidelización"> <!-- Placeholder -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
