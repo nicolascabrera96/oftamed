@@ -32,12 +32,33 @@
             box-sizing: border-box;
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            /* Changed to space-between */
         }
 
         .logo {
             height: 50px;
             /* Increased size for visibility */
             width: auto;
+        }
+
+        .flags-container {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .flag-icon {
+            width: 32px;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .flag-icon:hover {
+            transform: translateY(-2px);
         }
 
         /* Hero Container */
@@ -307,6 +328,12 @@
 
     <header>
         <img src="./assets/logo-full.png" alt="Oftamed" class="logo">
+
+        <div class="flags-container">
+            <img src="https://flagcdn.com/w40/cl.png" alt="Chile" class="flag-icon" title="Chile">
+            <img src="https://flagcdn.com/w40/pe.png" alt="Perú" class="flag-icon" title="Perú">
+            <img src="https://flagcdn.com/w40/mx.png" alt="México" class="flag-icon" title="México">
+        </div>
     </header>
 
     <div class="hero-wrapper">
