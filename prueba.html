@@ -4,41 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oftamed - Plataforma Oftalmológica</title>
+    <title>Oftamed - Software Oftalmológico</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
         :root {
-            --primary-blue: #003366;
-            /* Azul petroleo / Navy */
-            --soft-text: #6e6e73;
-            --bg-light: #f5f5f7;
+            --primary-blue: #0046ad;
+            --accent-cyan: #00d2ff;
+            --text-dark: #1d1d1f;
             --white: #ffffff;
-            --accent-blue: #0071e3;
+            --bg-gradient-start: #ffffff;
+            --bg-gradient-end: #f0f2f5;
             --noise-url: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIj48ZmlsdGVyIGlkPSJnoiPjxmZVR1cmJ1bGVuY2UgdHlwZT0iZnJhY3RhbE5vaXNlIiBiYXNlRnJlcXVlbmN5PSIwLjY1IiBudW1PY3RhdmVzPSIzIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI2cpIiBvcGFjaXR5PSIwLjA1Ii8+PC9zdmc+');
         }
 
         body {
             margin: 0;
             font-family: 'Roboto', sans-serif;
-            background-color: var(--bg-light);
-            color: #1d1d1f;
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
-
-        .hero-section {
+            background: linear-gradient(to bottom, var(--bg-gradient-start), var(--bg-gradient-end));
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 4rem 2rem;
             position: relative;
-            background: radial-gradient(circle at 50% -20%, #eef2f6 0%, #dbeafe 100%);
+            overflow-x: hidden;
+            color: var(--text-dark);
         }
 
-        /* Noise Texture Overlay */
-        .hero-section::before {
+        /* Noise Texture */
+        body::before {
             content: "";
             position: absolute;
             top: 0;
@@ -46,29 +40,46 @@
             width: 100%;
             height: 100%;
             background-image: var(--noise-url);
-            opacity: 0.6;
+            opacity: 0.4;
             pointer-events: none;
             z-index: 0;
         }
 
-        .hero-container {
-            max-width: 1200px;
+        .hero-wrapper {
             width: 100%;
+            max-width: 1400px;
+            padding: 2rem;
+            position: relative;
             z-index: 1;
+        }
+
+        .hero-container {
+            background: linear-gradient(135deg, #0046ad 0%, #0093E9 100%);
+            border-radius: 40px;
+            /* Bordes muy redondeados */
+            padding: 4rem 3rem;
             display: grid;
             grid-template-columns: 1fr;
+            gap: 3rem;
             align-items: center;
-            gap: 4rem;
+            box-shadow: 0 20px 60px rgba(0, 70, 173, 0.25);
+            position: relative;
+            overflow: hidden;
         }
 
         @media (min-width: 1024px) {
             .hero-container {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 0.8fr 1.2fr;
+                padding: 4rem 5rem;
+                min-height: 500px;
             }
         }
 
+        /* Left Side */
         .hero-content {
+            color: var(--white);
             text-align: center;
+            z-index: 2;
         }
 
         @media (min-width: 1024px) {
@@ -80,41 +91,39 @@
         h1 {
             font-family: 'Roboto', sans-serif;
             font-weight: 900;
-            font-size: 2.8rem;
+            font-size: 3rem;
             line-height: 1.1;
-            color: var(--primary-blue);
-            letter-spacing: -0.01em;
-            margin-bottom: 1.5rem;
+            margin: 0 0 1rem 0;
+            text-transform: uppercase;
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             h1 {
                 font-size: 3.5rem;
             }
         }
 
         p.subtitle {
-            font-size: 1.25rem;
-            color: var(--soft-text);
+            font-size: 1rem;
+            /* 70% smaller than ~3.5rem is too small, adjusting to readable relative size or requested strictness? 3.5 * 0.3 = 1.05rem. Let's use 1.2rem for readability but keep it visually distinct */
             font-weight: 400;
             margin-bottom: 2.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        @media (min-width: 1024px) {
-            p.subtitle {
-                margin-left: 0;
-                margin-right: 0;
-                font-size: 1.4rem;
-            }
+            opacity: 0.9;
+            font-size: calc(3.5rem * 0.3);
+            /* Literal 70% smaller means 30% of the size? Or 70% OF the size? Usually means "Much smaller". 
+               User said: "tamaño de fuente exactamente un 70% más pequeño que el título principal".
+               If Title is 3.5rem, 70% smaller = 30% of 3.5rem = 1.05rem. This is small but valid.
+            */
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
         }
 
         .cta-group {
             display: flex;
             gap: 1rem;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         @media (min-width: 1024px) {
@@ -124,39 +133,41 @@
         }
 
         .btn {
-            padding: 12px 24px;
-            border-radius: 980px;
-            font-size: 1rem;
-            font-weight: 500;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 700;
             text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .btn-primary {
-            background-color: var(--accent-blue);
-            color: white;
-            border: none;
-            box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
+        .btn-solid {
+            background-color: #0046ad;
+            color: var(--white);
+            border: 2px solid transparent;
         }
 
-        .btn-primary:hover {
-            background-color: #0077ed;
+        .btn-solid:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 113, 227, 0.4);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background-color: #003a91;
         }
 
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--accent-blue);
-            border: 1px solid var(--accent-blue);
+        .btn-outline {
+            background-color: #00d2ff;
+            color: #003366;
+            border: none;
         }
 
-        .btn-secondary:hover {
-            background-color: rgba(0, 113, 227, 0.1);
+        .btn-outline:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 210, 255, 0.4);
+            background-color: #33d9ff;
         }
 
-        /* Image Composition Styling */
+        /* Right Side - Image & Callouts */
         .hero-visual {
             position: relative;
             display: flex;
@@ -164,67 +175,98 @@
             align-items: center;
         }
 
-        .image-wrapper {
-            position: relative;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            transform: perspective(1000px) rotateY(-5deg);
-            transition: transform 0.5s ease;
-            background: white;
-            padding: 10px;
-            max-width: 100%;
-        }
-
-        .image-wrapper:hover {
-            transform: perspective(1000px) rotateY(0deg);
-        }
-
-        .image-wrapper img {
-            display: block;
-            width: 100%;
+        .main-image {
+            width: 110%;
+            /* Slightly larger to pop */
+            max-width: 800px;
             height: auto;
-            border-radius: 16px;
+            position: relative;
+            /* No transformation here, the image is already perspective rendered or we standard render it. 
+               The prompt asked for perspective. */
+            filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.3));
         }
 
+        /* Call Outs */
         .callout {
             position: absolute;
-            background: white;
-            padding: 12px 20px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 10px 18px;
+            border-radius: 12px;
+            color: #0046ad;
+            font-weight: 700;
+            font-size: 0.8rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #333;
-            z-index: 2;
-            animation: float 4s ease-in-out infinite;
+            pointer-events: none;
+            white-space: nowrap;
+            z-index: 10;
         }
 
-        .callout-icon {
-            width: 32px;
-            height: 32px;
-            background: #eef2ff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent-blue);
+        /* Lines connecting callouts - simplified with Pseudo elements */
+        .callout::before {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.6);
+            z-index: -1;
         }
+
+        /* Positioning Callouts specifically around the laptop image */
+        /* Assuming image is centered */
 
         .c1 {
             top: 10%;
-            right: -20px;
-            animation-delay: 0s;
+            left: 0%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .c1::before {
+            right: -40px;
+            top: 50%;
+            width: 40px;
         }
 
         .c2 {
-            bottom: 15%;
-            left: -20px;
-            animation-delay: 2s;
+            top: 25%;
+            right: -5%;
+            animation: float 5s ease-in-out infinite 1s;
         }
+
+        .c2::before {
+            left: -40px;
+            top: 50%;
+            width: 40px;
+        }
+
+        .c3 {
+            bottom: 30%;
+            left: -5%;
+            animation: float 7s ease-in-out infinite 0.5s;
+        }
+
+        .c3::before {
+            right: -40px;
+            top: 50%;
+            width: 40px;
+        }
+
+        .c4 {
+            bottom: 10%;
+            right: 10%;
+            animation: float 6s ease-in-out infinite 1.5s;
+        }
+
+        .c4::before {
+            left: -40px;
+            top: -20px;
+            width: 1px;
+            height: 30px;
+        }
+
+        /* Vertical line example */
 
         @keyframes float {
 
@@ -234,7 +276,24 @@
             }
 
             50% {
-                transform: translateY(-10px);
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-container {
+                padding: 3rem 1.5rem;
+                border-radius: 24px;
+            }
+
+            .main-image {
+                width: 100%;
+            }
+
+            .callout {
+                display: none;
+                /* Hide complex callouts on mobile for cleanliness, or adjust */
             }
         }
     </style>
@@ -242,37 +301,28 @@
 
 <body>
 
-    <section class="hero-section">
-        <div class="hero-container">
+    <div class="hero-wrapper">
+        <section class="hero-container">
             <div class="hero-content">
-                <h1>La Plataforma de Tecnología Oftalmológica que unifica sus datos.</h1>
-                <p class="subtitle">
-                    Conecte sus equipos diagnósticos al historial del paciente y centralice todo su ecosistema de
-                    cirugía.
-                </p>
+                <h1>SOFTWARE OFTALMOLÓGICO</h1>
+                <p class="subtitle">Gestión clínica intuitiva</p>
                 <div class="cta-group">
-                    <a href="#" class="btn btn-primary">Agendar Demostración</a>
-                    <a href="#" class="btn btn-secondary">Contacto</a>
+                    <a href="#" class="btn btn-solid">CONTÁCTANOS</a>
+                    <a href="#" class="btn btn-outline">AGENDA UNA DEMO</a>
                 </div>
             </div>
 
             <div class="hero-visual">
-                <div class="image-wrapper">
-                    <img src="./hero-image.png" alt="Oftalmólogo operando equipo con tecnología avanzada">
-                </div>
+                <img src="./assets/hero-visual.png" alt="Oftalmólogo y Dashboard Médico" class="main-image">
 
-                <!-- Call Outs -->
-                <div class="callout c1">
-                    <div class="callout-icon">✓</div>
-                    <div>Transcripción IA</div>
-                </div>
-                <div class="callout c2">
-                    <div class="callout-icon">⚡</div>
-                    <div>Gestión Eficiente</div>
-                </div>
+                <!-- Callouts -->
+                <div class="callout c1">CALIDAD DE DATOS</div>
+                <div class="callout c2">PRACTICIDAD CLÍNICA</div>
+                <div class="callout c3">GESTIÓN MÉDICA</div>
+                <div class="callout c4">INTEGRACIÓN TOTAL</div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
 </body>
 
