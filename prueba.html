@@ -1279,17 +1279,17 @@
             .result-item {
                 display: flex;
                 align-items: center;
-                gap: 15px;
+                justify-content: center;
                 margin-bottom: 20px;
                 font-size: 1.1rem;
-                color: #e2e8f0;
-                background: rgba(0, 0, 0, 0.2);
-                padding: 15px;
-                border-radius: 12px;
-            }
-
-            .result-icon {
-                font-size: 1.5rem;
+                color: white;
+                background: url('./assets/item-gradient.png') no-repeat center center;
+                background-size: cover;
+                padding: 25px;
+                border-radius: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                text-align: center;
+                font-weight: 500;
             }
 
             .micro-copy {
@@ -1364,17 +1364,14 @@
 
                         <div class="result-breakdown">
                             <div class="result-item">
-                                <span class="result-icon">⏱️</span>
                                 <div>Horas médicas liberadas: <strong style="color:white" id="res_hours">0</strong>
                                     horas/mes</div>
                             </div>
                             <div class="result-item">
-                                <span class="result-icon">📅</span>
                                 <div>Nuevas citas potenciales: <strong style="color:white" id="res_citas">0</strong> al
                                     año</div>
                             </div>
                             <div class="result-item">
-                                <span class="result-icon">📉</span>
                                 <div>Reducción de carga administrativa: <strong style="color:#00e5ff">25%</strong></div>
                             </div>
                         </div>
