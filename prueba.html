@@ -1469,7 +1469,7 @@
 
         <section class="faq-section">
             <div class="faq-header">
-                <h2>PREGUNTAS FRECUENTES</h2>
+                <h2>Preguntas frecuentes</h2>
             </div>
 
             <div class="faq-container">
@@ -1655,6 +1655,137 @@
                 </div>
             </div>
         </section>
+
+        <!-- Footer Section -->
+        <style>
+            .site-footer {
+                background-color: #1a202c;
+                /* Dark fallback */
+                background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+                /* Deep Blue */
+                color: white;
+                padding: 60px 20px 30px;
+                font-size: 0.9rem;
+            }
+
+            .footer-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+                align-items: start;
+            }
+
+            .footer-left {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer-logos-top {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .footer-logo-oftamed {
+                height: 40px;
+                width: auto;
+            }
+
+            .footer-seals {
+                margin-top: 10px;
+            }
+
+            .footer-seals img {
+                height: 50px;
+                width: auto;
+            }
+
+            .footer-copyright {
+                margin-top: 20px;
+                opacity: 0.6;
+                font-size: 0.8rem;
+            }
+
+            .footer-right {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 30px;
+                text-align: right;
+            }
+
+            .footer-logo-medinet {
+                height: 40px;
+                width: auto;
+            }
+
+            .footer-links {
+                display: flex;
+                gap: 20px;
+            }
+
+            .footer-links a {
+                color: white;
+                text-decoration: none;
+                font-weight: 500;
+                opacity: 0.8;
+                transition: opacity 0.3s;
+            }
+
+            .footer-links a:hover {
+                opacity: 1;
+            }
+
+            @media (max-width: 768px) {
+                .footer-container {
+                    grid-template-columns: 1fr;
+                    text-align: center;
+                    gap: 40px;
+                }
+
+                .footer-right {
+                    align-items: center;
+                }
+
+                .footer-logos-top {
+                    justify-content: center;
+                }
+            }
+        </style>
+        <footer class="site-footer">
+            <div class="footer-container">
+                <!-- Left Column -->
+                <div class="footer-left">
+                    <div class="footer-logos-top">
+                        <img src="./assets/oftamed-logo-negative.png" alt="Oftamed" class="footer-logo-oftamed">
+                    </div>
+
+                    <div class="footer-seals">
+                        <img src="./assets/footer-seals.png" alt="Certificaciones: ISO 27001, HIPAA, HL7">
+                    </div>
+
+                    <div class="footer-copyright">
+                        Software oftalmológico Oftamed by Medinet 2025
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="footer-right">
+                    <img src="./assets/logo-medinet.png" alt="Medinet" class="footer-logo-medinet">
+
+                    <div class="footer-links">
+                        <a href="#">Inicio</a>
+                        <span>|</span>
+                        <a href="#">Funcionalidades</a>
+                        <span>|</span>
+                        <a href="#">Integraciones</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
         <script>
             function formatCurrency(num) {
