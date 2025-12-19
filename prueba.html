@@ -264,25 +264,24 @@
 
         .seals-container {
             display: flex;
-            gap: 40px;
+            gap: 100px;
             align-items: center;
             justify-content: center;
             flex-wrap: wrap;
-            opacity: 0.7;
-            /* 70% opacity for the container or images as requested? "las imagenes tengan opacidad del 70%" implies images. */
+            /* opacity removed */
         }
 
         .seal-img {
             height: 50px;
             /* Uniform size */
             width: auto;
-            opacity: 0.7;
-            transition: opacity 0.3s;
+            /* opacity removed */
+            transition: transform 0.3s;
             filter: none;
         }
 
         .seal-img:hover {
-            opacity: 1;
+            transform: scale(1.1);
         }
 
         /* Responsive */
