@@ -9,321 +9,278 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
         :root {
-            --primary-blue: #0046ad;
-            --accent-cyan: #00d2ff;
-            --text-dark: #1d1d1f;
-            --white: #ffffff;
-            --bg-gradient-start: #ffffff;
-            --bg-gradient-end: #f0f2f5;
-            --noise-url: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIj48ZmlsdGVyIGlkPSJnoiPjxmZVR1cmJ1bGVuY2UgdHlwZT0iZnJhY3RhbE5vaXNlIiBiYXNlRnJlcXVlbmN5PSIwLjY1IiBudW1PY3RhdmVzPSIzIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI2cpIiBvcGFjaXR5PSIwLjA1Ii8+PC9zdmc+');
+            --bg-body: #ffffff;
+            --text-white: #ffffff;
         }
 
         body {
             margin: 0;
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(to bottom, var(--bg-gradient-start), var(--bg-gradient-end));
+            background-color: var(--bg-body);
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow-x: hidden;
-            color: var(--text-dark);
+        }
+        
+        /* Header */
+        header {
+            width: 100%;
+            max-width: 1400px;
+            padding: 20px 40px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
         }
 
-        /* Noise Texture */
-        body::before {
-            content: "";
+        .logo {
+            height: 40px; 
+            width: auto;
+        }
+
+        /* Hero Container */
+        .hero-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
+
+        .hero-card {
+            width: 100%;
+            max-width: 1300px;
+            background-image: url('./assets/hero-bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            border-radius: 40px;
+            padding: 60px;
+            box-sizing: border-box;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+            box-shadow: 0 20px 60px rgba(84, 104, 255, 0.2);
+        }
+
+        /* Left Column */
+        .hero-left {
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .pill-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .pill {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        .pill.green { background-color: #2ecc71; }
+        .pill.blue { background-color: #5d87cb; }
+
+        h1 {
+            color: white;
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .description {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 550px;
+        }
+
+        .cta-btn {
+            background: linear-gradient(to right, #29abe2, #29abe2);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.2s;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Right Column */
+        .hero-right {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .laptop-img {
+            width: 110%; 
+            max-width: 800px; 
+            height: auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Floating Cards */
+        .floating-element {
+            position: absolute;
+            z-index: 20;
+            width: auto;
+            display: block;
+        }
+
+        .floating-element img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Positions */
+        .f-icon {
+            top: 25%;
+            left: -5%;
+            width: 80px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .f-label {
+            top: 25%;
+            left: 8%; 
+            width: 180px;
+            animation: float 4s ease-in-out infinite;
+            animation-delay: 0.1s; 
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .f-rx {
+            bottom: 15%;
+            right: -5%;
+            width: 260px;
+            animation: float 6s ease-in-out infinite 1s;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Connectors SVG */
+        .connectors {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: var(--noise-url);
-            opacity: 0.4;
+            z-index: 5;
             pointer-events: none;
-            z-index: 0;
         }
 
-        .hero-wrapper {
-            width: 100%;
-            max-width: 1400px;
-            padding: 2rem;
-            position: relative;
-            z-index: 1;
+        .connector-path {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.4);
+            stroke-width: 2;
+            stroke-dasharray: 10;
+            animation: dash 30s linear infinite;
         }
-
-        .hero-container {
-            background: linear-gradient(135deg, #0046ad 0%, #0093E9 100%);
-            border-radius: 40px;
-            /* Bordes muy redondeados */
-            padding: 4rem 3rem;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
-            align-items: center;
-            box-shadow: 0 20px 60px rgba(0, 70, 173, 0.25);
-            position: relative;
-            overflow: hidden;
+        
+        .connector-dot {
+            fill: white;
+            r: 4;
         }
-
-        @media (min-width: 1024px) {
-            .hero-container {
-                grid-template-columns: 0.8fr 1.2fr;
-                padding: 4rem 5rem;
-                min-height: 500px;
-            }
-        }
-
-        /* Left Side */
-        .hero-content {
-            color: var(--white);
-            text-align: center;
-            z-index: 2;
-        }
-
-        @media (min-width: 1024px) {
-            .hero-content {
-                text-align: left;
-            }
-        }
-
-        h1 {
-            font-family: 'Roboto', sans-serif;
-            font-weight: 900;
-            font-size: 3rem;
-            line-height: 1.1;
-            margin: 0 0 1rem 0;
-            text-transform: uppercase;
-        }
-
-        @media (min-width: 1024px) {
-            h1 {
-                font-size: 3.5rem;
-            }
-        }
-
-        p.subtitle {
-            font-size: 1rem;
-            /* 70% smaller than ~3.5rem is too small, adjusting to readable relative size or requested strictness? 3.5 * 0.3 = 1.05rem. Let's use 1.2rem for readability but keep it visually distinct */
-            font-weight: 400;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-            font-size: calc(3.5rem * 0.3);
-            /* Literal 70% smaller means 30% of the size? Or 70% OF the size? Usually means "Much smaller". 
-               User said: "tamaño de fuente exactamente un 70% más pequeño que el título principal".
-               If Title is 3.5rem, 70% smaller = 30% of 3.5rem = 1.05rem. This is small but valid.
-            */
-            font-size: 1.1rem;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        @media (min-width: 1024px) {
-            .cta-group {
-                justify-content: flex-start;
-            }
-        }
-
-        .btn {
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-weight: 700;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .btn-solid {
-            background-color: #0046ad;
-            color: var(--white);
-            border: 2px solid transparent;
-        }
-
-        .btn-solid:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            background-color: #003a91;
-        }
-
-        .btn-outline {
-            background-color: #00d2ff;
-            color: #003366;
-            border: none;
-        }
-
-        .btn-outline:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 210, 255, 0.4);
-            background-color: #33d9ff;
-        }
-
-        /* Right Side - Image & Callouts */
-        .hero-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .main-image {
-            width: 110%;
-            /* Slightly larger to pop */
-            max-width: 800px;
-            height: auto;
-            position: relative;
-            /* No transformation here, the image is already perspective rendered or we standard render it. 
-               The prompt asked for perspective. */
-            filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.3));
-        }
-
-        /* Call Outs */
-        .callout {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 10px 18px;
-            border-radius: 12px;
-            color: #0046ad;
-            font-weight: 700;
-            font-size: 0.8rem;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            display: flex;
-            align-items: center;
-            pointer-events: none;
-            white-space: nowrap;
-            z-index: 10;
-        }
-
-        /* Lines connecting callouts - simplified with Pseudo elements */
-        .callout::before {
-            content: "";
-            position: absolute;
-            width: 40px;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.6);
-            z-index: -1;
-        }
-
-        /* Positioning Callouts specifically around the laptop image */
-        /* Assuming image is centered */
-
-        .c1 {
-            top: 10%;
-            left: 0%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .c1::before {
-            right: -40px;
-            top: 50%;
-            width: 40px;
-        }
-
-        .c2 {
-            top: 25%;
-            right: -5%;
-            animation: float 5s ease-in-out infinite 1s;
-        }
-
-        .c2::before {
-            left: -40px;
-            top: 50%;
-            width: 40px;
-        }
-
-        .c3 {
-            bottom: 30%;
-            left: -5%;
-            animation: float 7s ease-in-out infinite 0.5s;
-        }
-
-        .c3::before {
-            right: -40px;
-            top: 50%;
-            width: 40px;
-        }
-
-        .c4 {
-            bottom: 10%;
-            right: 10%;
-            animation: float 6s ease-in-out infinite 1.5s;
-        }
-
-        .c4::before {
-            left: -40px;
-            top: -20px;
-            width: 1px;
-            height: 30px;
-        }
-
-        /* Vertical line example */
 
         @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-8px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .hero-container {
-                padding: 3rem 1.5rem;
-                border-radius: 24px;
-            }
+        @keyframes dash {
+            to { stroke-dashoffset: -1000; }
+        }
 
-            .main-image {
-                width: 100%;
+        @media (max-width: 1024px) {
+            .hero-card {
+                grid-template-columns: 1fr;
+                padding: 40px;
+                background-position: left;
             }
-
-            .callout {
-                display: none;
-                /* Hide complex callouts on mobile for cleanliness, or adjust */
+            .hero-right {
+                margin-top: 50px;
             }
+            .f-icon { left: 0; top: 0; }
+            .f-label { left: 60px; top: 10px; }
         }
     </style>
 </head>
 
 <body>
 
+    <header>
+        <img src="./assets/logo.png" alt="Oftamed" class="logo">
+    </header>
+
     <div class="hero-wrapper">
-        <section class="hero-container">
-            <div class="hero-content">
-                <h1>SOFTWARE OFTALMOLÓGICO</h1>
-                <p class="subtitle">Gestión clínica intuitiva</p>
-                <div class="cta-group">
-                    <a href="#" class="btn btn-solid">CONTÁCTANOS</a>
-                    <a href="#" class="btn btn-outline">AGENDA UNA DEMO</a>
+        <section class="hero-card">
+            
+            <div class="hero-left">
+                <div class="pill-container">
+                    <span class="pill green">Software clínico</span>
+                    <span class="pill blue">Oftalmología</span>
                 </div>
+                <h1>La Plataforma de Tecnología Oftalmológica que unifica sus datos.</h1>
+                <p class="description">
+                    Conecte sus equipos diagnósticos al historial del paciente y centralice todo su ecosistema de cirugía, presupuestos y administración en una plataforma que automatiza los flujos operativos.
+                </p>
+                <a href="#" class="cta-btn">Agendar una demostración</a>
             </div>
 
-            <div class="hero-visual">
-                <img src="./assets/hero-visual.png" alt="Oftalmólogo y Dashboard Médico" class="main-image">
+            <div class="hero-right">
+                <svg class="connectors" viewBox="0 0 600 500" preserveAspectRatio="none">
+                    <path class="connector-path" d="M 120 120 C 180 120, 200 200, 300 250" />
+                    <circle cx="120" cy="120" class="connector-dot" />
+                    <circle cx="300" cy="250" class="connector-dot" />
+                    <path class="connector-path" d="M 500 400 C 450 400, 400 350, 350 300" />
+                    <circle cx="500" cy="400" class="connector-dot" />
+                </svg>
 
-                <!-- Callouts -->
-                <div class="callout c1">CALIDAD DE DATOS</div>
-                <div class="callout c2">PRACTICIDAD CLÍNICA</div>
-                <div class="callout c3">GESTIÓN MÉDICA</div>
-                <div class="callout c4">INTEGRACIÓN TOTAL</div>
+                <img src="./assets/laptop.png" alt="Plataforma Oftamed" class="laptop-img">
+                
+                <div class="floating-element f-icon">
+                    <img src="./assets/floating-icon.png" alt="Icono Oftamed">
+                </div>
+                
+                <div class="floating-element f-label">
+                    <img src="./assets/floating-label.png" alt="Etiqueta Historia Clinica">
+                </div>
+
+                <div class="floating-element f-rx">
+                    <img src="./assets/card-rx.png" alt="Recetas Médicas">
+                </div>
+
             </div>
+
         </section>
     </div>
 
 </body>
-
 </html>
