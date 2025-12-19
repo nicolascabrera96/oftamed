@@ -422,11 +422,22 @@
         }
 
         .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            display: flex;
             gap: 40px;
+            /* Horizontal gap */
             justify-content: center;
-            align-items: start;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .bento-col {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            /* Decreased vertical gap as requested ("menor") */
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
         }
 
         .bento-item {
@@ -437,28 +448,29 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             animation: float-bento 6s ease-in-out infinite;
+            width: 100%;
         }
 
         /* Stagger animations */
-        .bento-item:nth-child(1) {
+        .bento-col:nth-child(1) .bento-item:nth-child(1) {
             animation-delay: 0s;
         }
 
-        .bento-item:nth-child(2) {
+        .bento-col:nth-child(1) .bento-item:nth-child(2) {
             animation-delay: 1.5s;
         }
 
-        .bento-item:nth-child(3) {
+        .bento-col:nth-child(2) .bento-item:nth-child(1) {
             animation-delay: 0.5s;
         }
 
-        .bento-item:nth-child(4) {
+        .bento-col:nth-child(2) .bento-item:nth-child(2) {
             animation-delay: 2s;
         }
 
         .bento-item:hover {
-            transform: scale(1.05);
-            /* Enlarge on hover */
+            transform: scale(1.03) translateY(-5px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
             z-index: 10;
         }
 
@@ -467,8 +479,6 @@
             height: auto;
             display: block;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            /* Soft shadow needed? Images might have them. user said "sigas la linea de diseño" */
         }
 
         @keyframes float-bento {
@@ -483,9 +493,14 @@
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .bento-grid {
-                grid-template-columns: 1fr;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .bento-col {
+                width: 100%;
             }
         }
     </style>
@@ -501,19 +516,24 @@
         </div>
 
         <div class="bento-grid">
-            <!-- Order based on composition reference logic or random if not specified. 
-                 Ref image row 1: CRM, Telemed. Row 2: Gestion, Pagos? -->
-            <div class="bento-item">
-                <img src="./assets/integration-crm.png" alt="CRMs y Marketing">
+            <!-- Left Column: CRM, Gestion -->
+            <div class="bento-col">
+                <div class="bento-item">
+                    <img src="./assets/integration-crm.png" alt="CRMs y Marketing">
+                </div>
+                <div class="bento-item">
+                    <img src="./assets/integration-gestion.png" alt="Gestión y Salud">
+                </div>
             </div>
-            <div class="bento-item">
-                <img src="./assets/integration-telemed.png" alt="Telemedicina y Comunicación">
-            </div>
-            <div class="bento-item">
-                <img src="./assets/integration-gestion.png" alt="Gestión y Salud">
-            </div>
-            <div class="bento-item">
-                <img src="./assets/integration-pagos.png" alt="Pagos y Finanzas">
+
+            <!-- Right Column: Telemed, Pagos -->
+            <div class="bento-col">
+                <div class="bento-item">
+                    <img src="./assets/integration-telemed.png" alt="Telemedicina y Comunicación">
+                </div>
+                <div class="bento-item">
+                    <img src="./assets/integration-pagos.png" alt="Pagos y Finanzas">
+                </div>
             </div>
         </div>
     </div>
