@@ -1287,7 +1287,28 @@
                 border-top: 1px solid rgba(255, 255, 255, 0.2);
             }
 
+            .roi-logo {
+                position: absolute;
+                top: 40px;
+                left: 40px;
+                width: 150px;
+                height: auto;
+                z-index: 2;
+                opacity: 0.9;
+            }
+
+            .result-item strong {
+                color: #00c853;
+                font-weight: 800;
+            }
+
             @media (max-width: 900px) {
+                .roi-logo {
+                    width: 120px;
+                    top: 20px;
+                    left: 20px;
+                }
+
                 .roi-grid {
                     grid-template-columns: 1fr;
                     padding: 30px;
@@ -1304,6 +1325,7 @@
         </style>
 
         <section class="roi-section">
+            <img src="./assets/oftamed-logo-negative.png" class="roi-logo" alt="Oftamed">
             <div class="roi-container">
                 <div class="roi-header">
                     <h2>Descubra el costo oculto de su gestión actual.</h2>
@@ -1350,15 +1372,15 @@
 
                         <div class="result-breakdown">
                             <div class="result-item">
-                                <div>Horas médicas liberadas: <strong style="color:white" id="res_hours">0</strong>
+                                <div>Horas médicas liberadas: <strong id="res_hours">0</strong>
                                     horas/mes</div>
                             </div>
                             <div class="result-item">
-                                <div>Nuevas citas potenciales: <strong style="color:white" id="res_citas">0</strong> al
+                                <div>Nuevas citas potenciales: <strong id="res_citas">0</strong> al
                                     año</div>
                             </div>
                             <div class="result-item">
-                                <div>Reducción de carga administrativa: <strong style="color:#00e5ff">25%</strong></div>
+                                <div>Reducción de carga administrativa: <strong id="res_load">25%</strong></div>
                             </div>
                         </div>
 
