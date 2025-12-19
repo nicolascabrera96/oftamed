@@ -1105,6 +1105,348 @@
             </div>
         </section>
 
+        <!-- ROI Calculator Section -->
+        <style>
+            .roi-section {
+                width: 100%;
+                background: linear-gradient(135deg, #0b1120 0%, #101929 100%);
+                color: white;
+                padding: 100px 20px;
+                box-sizing: border-box;
+                position: relative;
+                overflow: hidden;
+            }
+
+            /* Decorative background blur */
+            .roi-section::before {
+                content: '';
+                position: absolute;
+                top: -100px;
+                left: -100px;
+                width: 600px;
+                height: 600px;
+                background: radial-gradient(circle, rgba(0, 229, 255, 0.05) 0%, transparent 70%);
+                border-radius: 50%;
+                z-index: 0;
+            }
+
+            .roi-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                position: relative;
+                z-index: 1;
+            }
+
+            .roi-header {
+                text-align: center;
+                margin-bottom: 60px;
+                max-width: 900px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .roi-header h2 {
+                font-size: 3rem;
+                font-weight: 800;
+                color: #ffffff;
+                margin-bottom: 20px;
+            }
+
+            .roi-header p {
+                font-size: 1.2rem;
+                color: #94a3b8;
+                line-height: 1.6;
+            }
+
+            .roi-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 60px;
+                align-items: center;
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 30px;
+                padding: 50px;
+                backdrop-filter: blur(10px);
+            }
+
+            .roi-inputs {
+                display: flex;
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .input-group {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .input-label-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .input-label {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #e2e8f0;
+            }
+
+            .input-value {
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: #00e5ff;
+            }
+
+            /* Slider Styling */
+            input[type=range] {
+                -webkit-appearance: none;
+                width: 100%;
+                background: transparent;
+            }
+
+            input[type=range]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                height: 24px;
+                width: 24px;
+                border-radius: 50%;
+                background: #00e5ff;
+                cursor: pointer;
+                margin-top: -10px;
+                box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+                transition: transform 0.2s;
+            }
+
+            input[type=range]::-webkit-slider-thumb:hover {
+                transform: scale(1.2);
+            }
+
+            input[type=range]::-webkit-slider-runnable-track {
+                width: 100%;
+                height: 4px;
+                cursor: pointer;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 2px;
+            }
+
+            /* Numeric Input Styling */
+            .ticket-input {
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 12px;
+                padding: 15px;
+                color: white;
+                font-size: 1.2rem;
+                width: 100%;
+                box-sizing: border-box;
+                transition: border-color 0.3s;
+            }
+
+            .ticket-input:focus {
+                outline: none;
+                border-color: #00e5ff;
+            }
+
+            /* Results Styling */
+            .roi-results {
+                background: linear-gradient(135deg, rgba(0, 70, 173, 0.2) 0%, rgba(0, 229, 255, 0.1) 100%);
+                border-radius: 24px;
+                padding: 40px;
+                border: 1px solid rgba(0, 229, 255, 0.2);
+                text-align: center;
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            }
+
+            .roi-results h3 {
+                font-size: 1.1rem;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                color: #94a3b8;
+                margin-bottom: 20px;
+            }
+
+            .big-number {
+                font-size: 3.5rem;
+                font-weight: 800;
+                color: #00ff88;
+                margin-bottom: 30px;
+                text-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+                line-height: 1;
+            }
+
+            .result-item {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                margin-bottom: 20px;
+                font-size: 1.1rem;
+                color: #e2e8f0;
+                background: rgba(0, 0, 0, 0.2);
+                padding: 15px;
+                border-radius: 12px;
+            }
+
+            .result-icon {
+                font-size: 1.5rem;
+            }
+
+            .micro-copy {
+                margin-top: 30px;
+                font-size: 0.95rem;
+                color: #94a3b8;
+                font-style: italic;
+                padding-top: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            @media (max-width: 900px) {
+                .roi-grid {
+                    grid-template-columns: 1fr;
+                    padding: 30px;
+                }
+
+                .roi-header h2 {
+                    font-size: 2rem;
+                }
+
+                .big-number {
+                    font-size: 2.5rem;
+                }
+            }
+        </style>
+
+        <section class="roi-section">
+            <div class="roi-container">
+                <div class="roi-header">
+                    <h2>Descubra el costo oculto de su gestión actual.</h2>
+                    <p>La ineficiencia administrativa no solo cansa, cuesta dinero. Calcule cuánto ingreso adicional
+                        podría generar al año simplemente recuperando el tiempo que sus médicos pierden escribiendo en
+                        papel o sistemas lentos.</p>
+                </div>
+
+                <div class="roi-grid">
+                    <!-- Left: Inputs -->
+                    <div class="roi-inputs">
+                        <!-- Doctors Slider -->
+                        <div class="input-group">
+                            <div class="input-label-row">
+                                <span class="input-label">Número de Médicos</span>
+                                <span class="input-value" id="val_docs">10</span>
+                            </div>
+                            <input type="range" id="in_docs" min="1" max="50" value="10" oninput="calculateROI()">
+                        </div>
+
+                        <!-- Patients Slider -->
+                        <div class="input-group">
+                            <div class="input-label-row">
+                                <span class="input-label">Promedio pacientes/día (por médico)</span>
+                                <span class="input-value" id="val_patients">15</span>
+                            </div>
+                            <input type="range" id="in_patients" min="5" max="40" value="15" oninput="calculateROI()">
+                        </div>
+
+                        <!-- Ticket Input -->
+                        <div class="input-group">
+                            <div class="input-label-row">
+                                <span class="input-label">Ticket promedio por consulta ($)</span>
+                            </div>
+                            <input type="number" id="in_ticket" class="ticket-input" value="35000" step="1000"
+                                oninput="calculateROI()">
+                        </div>
+                    </div>
+
+                    <!-- Right: Results -->
+                    <div class="roi-results">
+                        <h3>Ingresos Recuperables al Año</h3>
+                        <div class="big-number" id="res_money">$ 0</div>
+
+                        <div class="result-breakdown">
+                            <div class="result-item">
+                                <span class="result-icon">⏱️</span>
+                                <div>Horas médicas liberadas: <strong style="color:white" id="res_hours">0</strong>
+                                    horas/mes</div>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-icon">📅</span>
+                                <div>Nuevas citas potenciales: <strong style="color:white" id="res_citas">0</strong> al
+                                    año</div>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-icon">📉</span>
+                                <div>Reducción de carga administrativa: <strong style="color:#00e5ff">25%</strong></div>
+                            </div>
+                        </div>
+
+                        <p class="micro-copy" id="res_copy">
+                            "Al automatizar la ficha clínica y la agenda, sus médicos pueden atender 0 pacientes más por
+                            día con el mismo horario laboral."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            function formatCurrency(num) {
+                return new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(num);
+            }
+
+            function calculateROI() {
+                // Inputs
+                const docs = parseInt(document.getElementById('in_docs').value) || 0;
+                const patients = parseInt(document.getElementById('in_patients').value) || 0;
+                const ticket = parseInt(document.getElementById('in_ticket').value) || 0;
+
+                // Update UI Labels
+                document.getElementById('val_docs').innerText = docs;
+                document.getElementById('val_patients').innerText = patients;
+
+                // Logic
+                // 4 mins saved per patient
+                const minsSavedPerPatient = 4;
+                const apptDuration = 20; // assumed 20 mins slot
+                const daysPerMonth = 22; // working days
+                const monthsPerYear = 12;
+                const daysPerYear = daysPerMonth * monthsPerYear; // ~264
+
+                // Total Minutes Saved Per Day (Total Clinic)
+                const totalMinsSavedDay = docs * patients * minsSavedPerPatient;
+
+                // 1. Horas Medicas Liberadas (Mensual)
+                // (MinsSavedDay * DaysPerMonth) / 60
+                const hoursSavedMonth = Math.round((totalMinsSavedDay * daysPerMonth) / 60);
+
+                // 2. Extra Patients Per Day (Per Doctor)
+                // If a doctor sees P patients, saves P*4 mins.
+                // Extra Slots = (P*4) / 20.
+                const extraPatientsPerDocDay = (patients * minsSavedPerPatient) / apptDuration;
+
+                // Total New Appts Year (All Docs)
+                // ExtraSlots * Docs * DaysPerYear
+                const totalNewApptsYear = Math.round(extraPatientsPerDocDay * docs * daysPerYear);
+
+                // 3. Annual Revenue
+                const annualRevenue = totalNewApptsYear * ticket;
+
+                // Update Output
+                document.getElementById('res_money').innerText = formatCurrency(annualRevenue);
+                document.getElementById('res_hours').innerText = hoursSavedMonth;
+                document.getElementById('res_citas').innerText = new Intl.NumberFormat('es-CL').format(totalNewApptsYear);
+
+                // Update Copy
+                // "atender [X] pacientes más por día"
+                // round to 1 decimal if needed, or integer
+                const extraDisplay = parseFloat(extraPatientsPerDocDay.toFixed(1));
+                document.getElementById('res_copy').innerText =
+                    `"Al automatizar la ficha clínica y la agenda, sus médicos pueden atender ${extraDisplay} pacientes más por día con el mismo horario laboral."`;
+            }
+
+            // Init
+            window.addEventListener('load', calculateROI);
+        </script>
+
         <script>
             const container = document.getElementById('journeyContainer');
             const progressBar = document.getElementById('journeyProgress');
