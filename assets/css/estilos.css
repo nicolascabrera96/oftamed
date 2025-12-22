@@ -191,10 +191,12 @@ header.scrolled-nav {
 }
 
 /* Nav Button (Agenda Demo) */
+/* Nav Button (Agenda Demo & Contact) */
+.main-nav .nav-btn,
 .nav-btn {
     background: #00d2ff;
     background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
-    color: white;
+    color: white !important;
     border: none;
     padding: 12px 24px;
     border-radius: 8px;
@@ -204,6 +206,11 @@ header.scrolled-nav {
     box-shadow: 0 4px 10px rgba(0, 210, 255, 0.3);
     transition: transform 0.2s, box-shadow 0.2s;
     font-family: 'Roboto', sans-serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
+    line-height: normal;
 }
 
 .nav-btn:hover {
@@ -212,9 +219,26 @@ header.scrolled-nav {
 }
 
 @media (max-width: 1100px) {
+    .integrations-section {
+        padding: 40px 0;
+    }
+
     .main-nav {
-        display: none;
-        /* Hide earlier to avoid wrapping */
+        display: none !important;
+        /* Restore: Hide nav on mobile/tablet */
+    }
+
+    .marquee-row,
+    .marquee-row-reverse {
+        height: 60px;
+        /* Smaller rows */
+    }
+
+    .marquee-track img {
+        height: 35px;
+        /* Smaller logos */
+        margin: 0 15px;
+        /* Tighter spacing */
     }
 }
 
@@ -1024,14 +1048,14 @@ header.scrolled-nav {
 }
 
 .pillar-card {
-    background: rgba(15, 17, 26, 0.6);
-    /* Dark Glass */
-    backdrop-filter: blur(10px);
+    background: rgba(20, 20, 30, 0.6) !important;
+    /* Glassmorphism Dark */
+    backdrop-filter: blur(12px);
     border-radius: 24px;
     padding: 40px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(0, 210, 255, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -1043,37 +1067,37 @@ header.scrolled-nav {
 .pillar-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 0 30px rgba(0, 210, 255, 0.3);
-    border-color: #00d2ff;
-    background: rgba(15, 17, 26, 0.8);
+    border-color: rgba(0, 212, 255, 0.5);
+    background: rgba(20, 20, 30, 0.8) !important;
 }
 
 .pillar-card h3 {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #00d2ff;
-    /* Cyan for titles */
+    color: #FFFFFF !important;
+    /* Pure White */
     margin: 20px 0 15px 0;
 }
 
 .pillar-card p {
     font-size: 1rem;
     line-height: 1.6;
-    color: #cbd5e1;
-    /* Light gray for text */
+    color: #CCCCCC !important;
+    /* Light Gray */
     margin: 0;
 }
 
 .pillar-large {
     grid-column: 1 / 3;
     grid-row: 1;
-    background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+    /* Removed specific background, uses default glass */
     animation-delay: 0s;
 }
 
 .pillar-vertical {
     grid-column: 3;
     grid-row: 1 / 3;
-    background: #fdfdfd;
+    /* Removed specific background, uses default glass */
     animation-delay: 1.5s;
 }
 
@@ -1094,7 +1118,8 @@ header.scrolled-nav {
     width: auto;
     object-fit: contain;
     display: block;
-    filter: drop-shadow(0 5px 15px rgba(0, 70, 173, 0.4));
+    filter: brightness(0) invert(1) drop-shadow(0 5px 15px rgba(0, 70, 173, 0.4));
+    /* Force White Icons */
 }
 
 .pillar-large .pillar-icon {
@@ -1107,6 +1132,13 @@ header.scrolled-nav {
     max-height: 120px;
     margin-bottom: 30px;
     object-fit: contain;
+}
+
+.iso-seal {
+    filter: none !important;
+    /* Maintain original colors */
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5));
+    /* Natural shadow */
 }
 
 @media (max-width: 1024px) {
@@ -1139,12 +1171,36 @@ header.scrolled-nav {
         grid-template-columns: 1fr;
     }
 
+
+
     .pillar-large,
     .pillar-vertical,
     .pillar-small-1,
     .pillar-small-2 {
         grid-column: 1;
         grid-row: auto;
+    }
+
+    /* Mobile Optimization: Tech Pillars */
+    .pillar-card {
+        padding: 25px !important;
+        /* Reduced padding */
+        min-height: auto;
+        /* Allow flexible height */
+    }
+
+    .pillar-card h3 {
+        font-size: 1.3rem !important;
+        margin: 15px 0 10px 0;
+    }
+
+    .pillar-card p {
+        font-size: 0.95rem !important;
+    }
+
+    .pillar-icon {
+        height: 50px;
+        /* Smaller icons */
     }
 }
 
@@ -1942,8 +1998,10 @@ input[type=range]::-webkit-slider-runnable-track {
     }
 
     h1 {
-        font-size: 2.8rem;
-        /* Smaller H1 */
+        font-size: 1.8rem !important;
+        /* Force smaller size */
+        line-height: 1.2;
+        margin-bottom: 20px;
     }
 
     .hero-right {
@@ -1967,6 +2025,26 @@ input[type=range]::-webkit-slider-runnable-track {
 
     .logo-icon-card {
         right: -10px;
+    }
+
+    /* FORCE VISIBILITY for all Mobile/Tablet sizes */
+    .tech-pillars-section,
+    .patient-journey-section,
+    .integrations-section {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        min-height: auto !important;
+        overflow: visible !important;
+        /* Allow content to flow */
+    }
+
+    .pillars-grid,
+    .journey-container-wrapper,
+    .tech-stream-wrapper {
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 }
 
@@ -2150,6 +2228,34 @@ input[type=range]::-webkit-slider-runnable-track {
         margin-bottom: 30px;
     }
 
+
+
+    /* Mobile Optimization: Patient Journey */
+    .patient-journey-section {
+        padding: 40px 0;
+        /* Less vertical padding */
+    }
+
+    .journey-slide {
+        min-width: 85vw;
+        /* Width relative to viewport width */
+        margin-right: 15px;
+        /* Spacing between slides */
+        padding: 20px;
+        flex-direction: column;
+    }
+
+    .slide-visual img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .journey-nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
     .slide-content h3 {
         font-size: 1.5rem;
     }
@@ -2192,4 +2298,156 @@ input[type=range]::-webkit-slider-runnable-track {
     /* Larger as requested */
     margin-bottom: 30px;
     font-weight: 500;
+}
+
+/* Why Choose Oftamed Section */
+.why-choose-header h2 {
+    color: #ffffff !important;
+}
+
+.why-choose-card h3 {
+    color: #ffffff !important;
+}
+
+.why-choose-card p {
+    color: #ffffff !important;
+}
+
+/* =========================================
+   SPECTRA AI SECTION STYLES
+   ========================================= */
+
+.ai-section {
+    padding: 100px 0;
+    width: 100%;
+}
+
+.ai-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* Badge */
+.ai-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 50px;
+    background: rgba(0, 212, 255, 0.1);
+    /* Soft Cyan */
+    border: 1px solid #00D4FF;
+    /* Neon Border */
+    color: #00D4FF;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+}
+
+/* Typography */
+.ai-content h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1.1;
+    margin: 0 0 24px 0;
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #00D4FF 0%, #007AFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.ai-content p {
+    color: #B0B0B0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+/* Features List */
+.ai-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ai-features li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: #E0E0E0;
+    font-size: 1.05rem;
+}
+
+.ai-features li svg {
+    color: #00D4FF;
+    /* Cyan Icons */
+    flex-shrink: 0;
+}
+
+/* Video Container */
+.video-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 212, 255, 0.1);
+    /* Subtle outer glow */
+    background: #000;
+}
+
+/* Glow Effect helper */
+.video-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    box-shadow: inset 0 0 20px rgba(0, 212, 255, 0.2);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.video-frame video {
+    width: 100%;
+    height: auto;
+    display: block;
+    mix-blend-mode: screen;
+    /* Optional: helps blend black bg if video has it */
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .ai-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .ai-content {
+        order: 1;
+    }
+
+    .video-frame {
+        order: 2;
+    }
+
+    .ai-features li {
+        justify-content: center;
+        text-align: left;
+    }
+
+    .ai-content h2 {
+        font-size: 2.5rem;
+    }
 }
