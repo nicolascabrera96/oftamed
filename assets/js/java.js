@@ -3,7 +3,7 @@ let journeyContainer;
 let progressBar;
 let journeyInterval;
 let isUserInteracting = false;
-const AUTO_SCROLL_DELAY = 6000;
+const AUTO_SCROLL_DELAY = 20000;
 
 document.addEventListener('DOMContentLoaded', () => {
 
